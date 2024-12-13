@@ -1,8 +1,5 @@
 package web.dao;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 import web.model.User;
@@ -11,7 +8,6 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import java.util.List;
 
-@Component
 @Repository
 public class UserDaoImp implements UserDao {
 
@@ -19,36 +15,33 @@ public class UserDaoImp implements UserDao {
     @PersistenceContext
     private EntityManager entityManager;
 
-    @Autowired
-    public UserDaoImp(EntityManager entityManager) {
-        this.entityManager = entityManager;
-    }
-
     @Override
-    @Bean
+    @Transactional(readOnly = true)
     public void addUser(User user) {
         entityManager.persist(user);
     }
 
-    @Transactional
     @Override
-    @Bean
+    @Transactional
     public List<User> getAllUsers() {
         return entityManager.createQuery("from User", User.class).getResultList();
     }
 
     @Override
+    @Transactional
     public User getUserById(Long id) {
         return entityManager.find(User.class, id);
     }
 
     @Override
-    @Bean
+    @Transactional
     public void updateUser(User user) {
+        System.out.println("Updating user: " + user);
         entityManager.merge(user);
     }
 
     @Override
+    @Transactional
     public void deleteUserById(long id) {
         User user = entityManager.find(User.class, id);
         entityManager.remove(user);
