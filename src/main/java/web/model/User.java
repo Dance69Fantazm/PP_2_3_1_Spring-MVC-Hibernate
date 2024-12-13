@@ -1,8 +1,11 @@
 package web.model;
 
+import org.springframework.stereotype.Component;
+
 import javax.persistence.*;
 import java.util.Objects;
 
+@Component
 @Entity
 @Table(name = "users")
 public class User {
@@ -18,7 +21,7 @@ public class User {
     @Column(name = "last_name")
     private String lastName;
 
-    @Column(name = "email", unique = true)
+    @Column(name = "email")
     private String email;
 
     @Column(name = "age")
@@ -69,28 +72,24 @@ public class User {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof User)) return false;
-        User user = (User) o;
-        return Objects.equals(id, user.id) &&
-                Objects.equals(email, user.email);
+        if (!(o instanceof User user)) return false;
+        return Objects.equals(id, user.id);
     }
 
     @Override
     public int hashCode() {
         int result = 17;
-        result = 31 * result + (email != null ? email.hashCode() : 0);
         result = 31 * result + (id != null ? id.hashCode() : 0);
         return result;
     }
 
     @Override
     public String toString() {
-        return "User{" +
-                "id=" + id +
-                ", firstName='" + firstName + '\'' +
-                ", lastName='" + lastName + '\'' +
-                ", email='" + email + '\'' +
-                ", age=" + age +
-                '}';
+        return "User: " +
+                "id = " + id +
+                ", firstName = '" + firstName + '\'' +
+                ", lastName = '" + lastName + '\'' +
+                ", email = '" + email + '\'' +
+                ", age = " + age;
     }
 }

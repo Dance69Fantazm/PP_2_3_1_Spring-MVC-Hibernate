@@ -1,6 +1,5 @@
 /target/
 /.idea/
-/src/main/resources/
 !.mvn/wrapper/maven-wrapper.jar
 
 *.iws

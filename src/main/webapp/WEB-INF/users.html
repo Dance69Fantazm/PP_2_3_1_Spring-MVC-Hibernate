@@ -1,29 +1,27 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8" />
-    <title>Users</title>
-    <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}"/>
+    <meta charset="UTF-8">
+    <title>All users</title>
+    <style>table th, table td {padding: 5px}</style>
 </head>
 <body>
-<h1>Cars</h1>
-<br/><br/>
-<div>
-    <table border="1">
-        <tr>
-            <th>id</th>
-            <th>firstName</th>
-            <th>lastName</th>
-            <th>email</th>
-        </tr>
-        <tr th:each ="user : ${users}">
-            <td th:text="${user.firstName}">...</td>
-            <td th:text="${user.lastName}">...</td>
-            <td th:text="${user.email}">...</td>
-            <td th:text="${user.age}">...</td>
-        </tr>
-    </table>
-</div>
+<h1></h1>
+<table border="1">
+    <tr>
+        <th>id</th>
+        <th>firstname</th>
+        <th>lastname</th>
+        <th>email</th>
+        <th>age</th>
+    </tr>
+    <tr th:each="user: ${list}">
+        <td th:utext="${user.getId()}"></td>
+        <td th:utext="${user.getFirstName()}"></td>
+        <td th:utext="${user.getLastName()}"></td>
+        <td th:utext="${user.getEmail()}"></td>
+        <td th:utext="${user.getAge()}"></td>
+    </tr>
+</table>
 </body>
 </html>
