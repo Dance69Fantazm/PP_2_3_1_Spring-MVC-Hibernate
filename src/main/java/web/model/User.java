@@ -28,8 +28,8 @@ public class User {
     private String email;
 
     @Column(name = "age")
-    @Min(value = 1,message = "Salary >0")
-    @Max(value = 150,message = "Salary <=150")
+    @Min(value = 1,message = "Age >0")
+    @Max(value = 1500,message = "Age <=150")
     private int age;
 
     public User() {
@@ -50,35 +50,37 @@ public class User {
         this.id = id;
     }
 
-    public String getName() {
+    public @NotBlank(message = "Name not empty!") String getName() {
         return name;
     }
 
-    public void setName(String firstName) {
-        this.name = firstName;
+    public void setName(@NotBlank(message = "Name not empty!") String name) {
+        this.name = name;
     }
 
-    public String getSurname() {
+    public @NotBlank(message = "Name not empty!") String getSurname() {
         return surname;
     }
 
-    public void setSurname(String lastName) {
-        this.surname = lastName;
+    public void setSurname(@NotBlank(message = "Name not empty!") String surname) {
+        this.surname = surname;
     }
 
-    public String getEmail() {
+    public @NotBlank(message = "Name not empty!") String getEmail() {
         return email;
     }
 
-    public void setEmail(String email) {
+    public void setEmail(@NotBlank(message = "Name not empty!") String email) {
         this.email = email;
     }
 
+    @Min(value = 1, message = "Age >0")
+    @Max(value = 1500, message = "Age <=1500")
     public int getAge() {
         return age;
     }
 
-    public void setAge(int age) {
+    public void setAge(@Min(value = 1, message = "Age >0") @Max(value = 1500, message = "Age <=1500") int age) {
         this.age = age;
     }
 
@@ -100,8 +102,8 @@ public class User {
     public String toString() {
         return "User{" +
                 "id=" + id +
-                ", firstName='" + name + '\'' +
-                ", lastName='" + surname + '\'' +
+                ", name='" + name + '\'' +
+                ", surname='" + surname + '\'' +
                 ", email='" + email + '\'' +
                 ", age=" + age +
                 '}';
