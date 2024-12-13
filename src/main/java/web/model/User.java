@@ -1,11 +1,11 @@
 package web.model;
 
-import org.springframework.stereotype.Component;
-
 import javax.persistence.*;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotBlank;
 import java.util.Objects;
 
-@Component
 @Entity
 @Table(name = "users")
 public class User {
@@ -16,23 +16,28 @@ public class User {
     private Long id;
 
     @Column(name = "name")
-    private String firstName;
+    @NotBlank(message = "Name not empty!")
+    private String name;
 
-    @Column(name = "last_name")
-    private String lastName;
+    @Column(name = "surname")
+    @NotBlank(message = "Name not empty!")
+    private String surname;
 
     @Column(name = "email")
+    @NotBlank(message = "Name not empty!")
     private String email;
 
     @Column(name = "age")
-    private byte age;
+    @Min(value = 1,message = "Salary >0")
+    @Max(value = 150,message = "Salary <=150")
+    private int age;
 
     public User() {
     }
 
-    public User(String firstName, String lastName, String email, byte age) {
-        this.firstName = firstName;
-        this.lastName = lastName;
+    public User(String firstName, String lastName, String email, int age) {
+        this.name = firstName;
+        this.surname = lastName;
         this.email = email;
         this.age = age;
     }
@@ -45,20 +50,20 @@ public class User {
         this.id = id;
     }
 
-    public String getFirstName() {
-        return firstName;
+    public String getName() {
+        return name;
     }
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
+    public void setName(String firstName) {
+        this.name = firstName;
     }
 
-    public String getLastName() {
-        return lastName;
+    public String getSurname() {
+        return surname;
     }
 
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
+    public void setSurname(String lastName) {
+        this.surname = lastName;
     }
 
     public String getEmail() {
@@ -67,6 +72,14 @@ public class User {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public int getAge() {
+        return age;
+    }
+
+    public void setAge(int age) {
+        this.age = age;
     }
 
     @Override
@@ -85,11 +98,12 @@ public class User {
 
     @Override
     public String toString() {
-        return "User: " +
-                "id = " + id +
-                ", firstName = '" + firstName + '\'' +
-                ", lastName = '" + lastName + '\'' +
-                ", email = '" + email + '\'' +
-                ", age = " + age;
+        return "User{" +
+                "id=" + id +
+                ", firstName='" + name + '\'' +
+                ", lastName='" + surname + '\'' +
+                ", email='" + email + '\'' +
+                ", age=" + age +
+                '}';
     }
 }
