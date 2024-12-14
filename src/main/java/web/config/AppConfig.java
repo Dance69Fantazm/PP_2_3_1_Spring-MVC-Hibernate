@@ -63,18 +63,4 @@ public class AppConfig {
         transactionManager.setEntityManagerFactory(entityManagerFactory().getObject());
         return transactionManager;
     }
-
-    @PreDestroy
-    public void closeResources() {
-        if (entityManagerFactoryBean != null && entityManagerFactoryBean.getObject() != null) {
-            entityManagerFactoryBean.getObject().close();
-        }
-        if (dataSource != null) {
-            try {
-                dataSource.close();
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
-    }
 }
