@@ -29,15 +29,16 @@ public class User {
 
     @Column(name = "age")
     @Min(value = 1,message = "Age >0")
-    @Max(value = 1500,message = "Age <=150")
+    @Max(value = 1500,message = "Age <=1500")
     private int age;
 
     public User() {
     }
 
-    public User(String firstName, String lastName, String email, int age) {
-        this.name = firstName;
-        this.surname = lastName;
+    public User(Long id, String name, String surname, String email, int age) {
+        this.id = id;
+        this.name = name;
+        this.surname = surname;
         this.email = email;
         this.age = age;
     }

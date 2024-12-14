@@ -20,7 +20,7 @@ public class UserController {
 
     @GetMapping("/")
     public String getAllUsers(Model model) {
-        model.addAttribute("messages", userService.getAllUsers());
+        model.addAttribute("users", userService.getAllUsers());
         return "users";
     }
 
