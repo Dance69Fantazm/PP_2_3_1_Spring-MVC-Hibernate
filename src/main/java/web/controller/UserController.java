@@ -19,13 +19,13 @@ public class UserController {
     }
 
     @GetMapping("/")
-    public String getAllUsers(Model model) {
+    public String showUsersTable(Model model) {
         model.addAttribute("users", userService.getAllUsers());
         return "users";
     }
 
     @GetMapping("/adduser")
-    public String CreateUserForm(@ModelAttribute("user") User user) {
+    public String addUserForm(@ModelAttribute("user") User user) {
         return "adduser";
     }
 
@@ -39,8 +39,8 @@ public class UserController {
     }
 
     @GetMapping("/updateuser")
-    public String getUser(@RequestParam("id") long id, Model model) {
-        model.addAttribute("user", userService.getUserById(id));
+    public String updateUserForm(@RequestParam("id") long id, Model model) {
+        model.addAttribute("user", userService.getUser(id));
         return "updateuser";
     }
 
@@ -53,13 +53,12 @@ public class UserController {
         return "redirect:/";
     }
 
-
     @GetMapping("/deleteUser")
     public String deleteUser(@ModelAttribute("id") @Valid Long id, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             return "deleteuser";
         }
-        userService.deleteUserById(id);
+        userService.deleteUser(id);
         return "redirect:/";
     }
 }

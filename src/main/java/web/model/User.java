@@ -20,16 +20,16 @@ public class User {
     private String name;
 
     @Column(name = "surname")
-    @NotBlank(message = "Name not empty!")
+    @NotBlank(message = "Surname not empty!")
     private String surname;
 
     @Column(name = "email")
-    @NotBlank(message = "Name not empty!")
+    @NotBlank(message = "Email not empty!")
     private String email;
 
     @Column(name = "age")
-    @Min(value = 1,message = "Age >0")
-    @Max(value = 1500,message = "Age <=1500")
+    @Min(value = 1, message = "Age >0")
+    @Max(value = 1500, message = "Age <= 1500")
     private int age;
 
     public User() {
@@ -59,29 +59,29 @@ public class User {
         this.name = name;
     }
 
-    public @NotBlank(message = "Name not empty!") String getSurname() {
+    public @NotBlank(message = "Surname not empty!") String getSurname() {
         return surname;
     }
 
-    public void setSurname(@NotBlank(message = "Name not empty!") String surname) {
+    public void setSurname(@NotBlank(message = "Surname not empty!") String surname) {
         this.surname = surname;
     }
 
-    public @NotBlank(message = "Name not empty!") String getEmail() {
+    public @NotBlank(message = "Email not empty!") String getEmail() {
         return email;
     }
 
-    public void setEmail(@NotBlank(message = "Name not empty!") String email) {
+    public void setEmail(@NotBlank(message = "Email not empty!") String email) {
         this.email = email;
     }
 
-    @Min(value = 1, message = "Age >0")
-    @Max(value = 1500, message = "Age <=1500")
+    @Min(value = 1, message = "Age > 0")
+    @Max(value = 1500, message = "Age <= 1500")
     public int getAge() {
         return age;
     }
 
-    public void setAge(@Min(value = 1, message = "Age >0") @Max(value = 1500, message = "Age <=1500") int age) {
+    public void setAge(@Min(value = 1, message = "Age > 0") @Max(value = 1500, message = "Age <= 1500") int age) {
         this.age = age;
     }
 
